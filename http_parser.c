@@ -2244,7 +2244,7 @@ http_parse_host(const char * buf, struct http_parser_url *u, int found_at) {
   }
 
   buflen = u->field_data[UF_HOST].off + u->field_data[UF_HOST].len;
-  if(buflen > (uint16_t)-1) {
+  if ((buflen < u->field_data[UF_HOST].off) || (buflen > (uint16_t)-1)) {
       return 1;
   }
 
